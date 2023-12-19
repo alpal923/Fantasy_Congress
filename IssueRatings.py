@@ -123,7 +123,7 @@ def generate_position_matrix(senator):
 def generate_positions_csv():
     position_data = [['Senator Name and Metric', '2nd Amendment', 'Agriculture', 'Budget', 'Competition Policy', 
                     'Consumer Protection', 'Drought', 'Education', 'Energy', 'Environment', 'Ethics', 'Families', 
-                    'Healthcare', 'Housing', 'Immigration', 'Indian Affiars', 'Infrastructure', 'Jobs', 'Lands', 'Rural Utah', 
+                    'Healthcare', 'Housing', 'Immigration', 'Indian Affairs', 'Infrastructure', 'Jobs', 'Lands', 'Rural Utah', 
                     'Safety', 'Security', 'Seniors', 'Taxes', 'Technology', 'Trade', 'Veterans', 'Working Families']]
     senators = ["romney", "lee", "klobuchar", "lee"]
     for senator in senators:
