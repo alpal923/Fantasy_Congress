@@ -69,7 +69,7 @@ def rate_position(senator, issue):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "You are to evaluate how authoritarian a given position or a proposed bill is. Rate it on a scale to -1 to 1 where -1 is the most authoritarian and 1 is the most libertarian. Please answer with a number between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
+            {"role": "system", "content": "You are to evaluate how authoritarian a given position or a proposed bill is. Rate it on a scale to -1 to 1 where -1 is the most libertarian and 1 is the most authoritarian. Please answer with a number between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
             {"role": "user", "content": statement[:4097]}
             ]
         )
@@ -125,7 +125,7 @@ def generate_positions_csv():
                     'Consumer Protection', 'Drought', 'Education', 'Energy', 'Environment', 'Ethics', 'Families', 
                     'Healthcare', 'Housing', 'Immigration', 'Indian Affairs', 'Infrastructure', 'Jobs', 'Lands', 'Rural Utah', 
                     'Safety', 'Security', 'Seniors', 'Taxes', 'Technology', 'Trade', 'Veterans', 'Working Families']]
-    senators = ["romney", "lee", "klobuchar", "lee"]
+    senators = ["romney", "lee", "klobuchar", "smith"]
     for senator in senators:
         position_data += generate_position_matrix(senator)
     with open("senator_issue_positions.csv", "w", newline="") as file:
