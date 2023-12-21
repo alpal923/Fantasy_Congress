@@ -28,4 +28,29 @@ plt.xlim(-1, 1)
 plt.ylim(-1, 1)
 
 plt.grid(True, linestyle="--", alpha=0.7)
+plt.savefig("senator_issue_positions.png")
+
+plt.clf()
+
+df = pd.read_csv("bill_ratings.csv")
+
+bills = ["Presidential Impeachment", "Social Security", "Immigrant Visas"]
+for i, bill in enumerate(bills):
+    left_right, auth_lib = [value[1] for value in df[bill].items()]
+    print(left_right, auth_lib)
+    plt.scatter(left_right, auth_lib, color=colors[i % len(colors)], label=f"{bill}", marker="x", alpha=1)
+
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+
+plt.legend(loc="upper right")
+plt.xlabel("Left to Right Wing")
+plt.ylabel("Libertarian to Authoritarian")
+plt.title("Bill Rating Positions")
+
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+
+plt.grid(True, linestyle="--", alpha=0.7)
+plt.savefig("bill_rating_positions.png")
 plt.show()

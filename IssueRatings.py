@@ -69,23 +69,23 @@ def rate_position(senator, issue):
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "You are to evaluate how authoritarian a given position or a proposed bill is. Rate it on a scale to -1 to 1 where -1 is the most libertarian and 1 is the most authoritarian. Please answer with a number between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
+            {"role": "system", "content": "You are to evaluate how authoritarian a given position is. Rate it on a scale to -1 to 1 where -1 is the most libertarian and 1 is the most authoritarian. Please answer with a number between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
             {"role": "user", "content": statement[:4097]}
             ]
         )
         generated_text_gov = completion.choices[0].message.content
         ratings = re.findall(r"-?0\.?[0-9]?", generated_text_gov)
-        left_right_rate = np.mean([float(rating) for rating in ratings]) if len(ratings) > 0 else 0.0
+        auth_lib_rate = np.mean([float(rating) for rating in ratings]) if len(ratings) > 0 else 0.0
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-            {"role": "system", "content": "You are to evaluate how left or right wing a given position or a proposed bill is. Rate it on a scale to -1 to 1 where -1 is the most left wing and 1 is the most right wing in the context of American politics. Please answer with a value between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
+            {"role": "system", "content": "You are to evaluate how left or right wing a given position is. Rate it on a scale to -1 to 1 where -1 is the most left wing and 1 is the most right wing in the context of American politics. Please answer with a value between -1 and 1. If you cannot evaluate it based on the given information, answer with a 0."},
             {"role": "user", "content": statement[:4097]}
             ]
         )
         generated_text_pos = completion.choices[0].message.content
         ratings = re.findall(r"-?0\.?[0-9]?", generated_text_pos)
-        auth_lib_rate = np.mean([float(rating) for rating in ratings]) if len(ratings) > 0 else 0.0
+        left_right_rate = np.mean([float(rating) for rating in ratings]) if len(ratings) > 0 else 0.0
         return left_right_rate, auth_lib_rate
     else:
         return None, None
