@@ -53,4 +53,3 @@ plt.ylim(-1, 1)
 
 plt.grid(True, linestyle="--", alpha=0.7)
 plt.savefig("bill_rating_positions.png")
-plt.show()
